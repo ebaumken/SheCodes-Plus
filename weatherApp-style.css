@@ -1,0 +1,72 @@
+body {
+  background: rgb(177, 228, 221);
+}
+h1 {
+  color: rgb(0, 82, 78);
+  text-align: center;
+  font-family: barlow;
+  padding: 25 0 25 0;
+  font-size: 70px;
+  top: 45px;
+}
+h2 {
+  color: rgb(0, 82, 78);
+  text-align: center;
+  font-family: barlow;
+  font-size: 24px;
+  margin: 20px auto;
+}
+input.search {
+  display: block;
+  margin: 0 auto;
+  font-size: 16px;
+  border: 2px;
+  border-color: rgb(0, 82, 78);
+}
+.currentforecast {
+  display: block;
+  margin: 50px auto;
+  max-width: 350px;
+  padding: 20px 25px 20px 25px;
+  color: rgb(0, 82, 78);
+  border-color: rgb(0, 82, 78);
+  border-radius: 15px;
+  background-color: rgb(203, 235, 230);
+  font-size: 75px;
+  box-shadow: 10px 5px 5px;
+}
+.ltforecast {
+  border-radius: 100%;
+  border-color: rgb(0, 82, 78);
+  font-size: 24px;
+  max-width: 350px;
+  text-align: center;
+  overflow: hidden;
+  margin: 50px auto 20px;
+  width: 120px;
+  height: 70px;
+  background-color: rgb(203, 235, 230);
+  box-shadow: 10px 5px 5px;
+}
+.daycount {
+  font-size: 16px;
+}
+hr {
+  max-width: 1000px;
+}
+
+div.card:hover {
+  cursor: pointer;
+}
+span.converts {
+  font-size: 12px;
+}
+span.converts:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+footer {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 10px;
+}
