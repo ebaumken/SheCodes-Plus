@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weather App</title>
+    <meta charset="UTF-8" />
+    
+    
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
+<link rel = "Stylesheet" href="CSS/weatherApp-style.css" />
+  </head>
+
+  <body>
+    <br/>
+    <br/>
+   <h1>
+     Toronto, Canada
+  <h1>
+    <h2>
+
+      <h2>
+    <form id="search-form">
+      <input class = "search" type="text" placeholder="🔍 Search" id="city-search-input"/>
+    </form>
+    <div class="card currentforecast" id="convertible-current-temperature">
+        <div class="card-body">
+           🌤 28°C
+        </div>
+      </div>
+      <span class ="converts" id="farenheit-conversion-link">Farenheit</span>     <span></span><span class ="converts" id="celcius-conversion-link">Celcius</span>
+     <div</div>
+     <hr />
+      <h2>
+        5-Day Forecast
+      </h2>
+      <div></div>
+      <div class="container">
+          <div class="row">
+            <div class="col text-center my-auto">
+              <div class="card ltforecast card-block d-flex" style="height: 120px">
+                <div class="card-body align-items-center d-flex justify-content-center">
+                        ☁ 22°
+                    </div>
+                  </div>
+                  <div class="daycount">Day 1</div>
+            </div>
+            <div class="col text-center my-auto">
+              <div class="card ltforecast card-block d-flex" style="height: 120px">
+                <div class="card-body align-items-center d-flex justify-content-center">
+                        🌤 24°
+                    </div>
+                  </div>
+                  <div class="daycount">Day 2</div>
+            </div>
+            <div class="col text-center my-auto">
+              <div class="card ltforecast card-block d-flex" style="height: 120px">
+                <div class="card-body align-items-center d-flex justify-content-center">
+                        🌧 21°
+                </div>
+                  </div>
+                  <div class="daycount">Day 3</div>
+            </div>
+            <div class="col text-center my-auto">
+              <div class="card ltforecast card-block d-flex" style="height: 120px">
+                <div class="card-body align-items-center d-flex justify-content-center">
+                        🌤 28°
+                    </div>
+                  </div>
+                  <div class="daycount">Day 4</div>
+              </div>
+              <div class="col text-center my-auto">
+                <div class="card ltforecast card-block d-flex" style="height: 120px">
+                  <div class="card-body align-items-center d-flex justify-content-center">
+                          ☀ 28°
+                      </div>
+                    </div>
+                    <div class="daycount">Day 5</div>
+              </div>
+          </div>
+        </div>
+        <br />
+        <hr />
+     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>   
+    <script src="weatherApp-script.js"></script>
+  </body>
+  <footer>
+    <div>
+    ⚡📡 Weather by SheCodes📡⚡
+    </div>
+    <a href="https://github.com/ebaumken/SheCodes-Plus">
+    Github Repository
+    </a>
+    <br />
+  </footer>
+</html>
