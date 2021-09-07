@@ -3,8 +3,6 @@
   <head>
     <title>Weather App</title>
     <meta charset="UTF-8" />
-    
-    
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -14,14 +12,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
-<link rel = "Stylesheet" href="CSS/weatherApp-style.css" />
+<link rel = "Stylesheet" href="src/style.css" />
   </head>
 
   <body>
     <br/>
     <br/>
-   <h1>
-     Toronto, Canada
+   <h1 id="current-city">
+     Toronto
   <h1>
     <h2>
 
@@ -29,13 +27,29 @@
     <form id="search-form">
       <input class = "search" type="text" placeholder="🔍 Search" id="city-search-input"/>
     </form>
-    <div class="card currentforecast" id="convertible-current-temperature">
-        <div class="card-body">
-           🌤 28°C
+    <div class="card currentforecast">
+        <div class="card-body row">
+            <div class = "col-3">
+               <img src = "http://openweathermap.org/img/wn/10d@2x.png" id = "weather-icon">
+            </div>
+            <div class = "col-4">
+              <span id = "current-temperature"> </span><span id="temp-metric">°C</span>
+            </div>
+            <div class = "col-5">
+                <ul class = "details">
+                
+                    <li>
+                    <span id="weather-descriptor">clear</span>
+                    </li>
+                    <li>wind speed: <span id="wind-speed">15</span>km/h</li>
+                    <li>humidity: <span id="humidity">40</span>%</li>
+                </ul>
+                
+            </div>          
         </div>
-      </div>
-      <span class ="converts" id="farenheit-conversion-link">Farenheit</span>     <span></span><span class ="converts" id="celcius-conversion-link">Celcius</span>
-     <div</div>
+    </div>
+        <span class ="converts" id="farenheit-conversion-link">Farenheit</span>     <span></span><span class ="converts" id="celcius-conversion-link">Celcius</span>
+     <div></div>
      <hr />
       <h2>
         5-Day Forecast
@@ -49,7 +63,7 @@
                         ☁ 22°
                     </div>
                   </div>
-                  <div class="daycount">Day 1</div>
+                  <div class="daycount" id ="day1">Day 1</div>
             </div>
             <div class="col text-center my-auto">
               <div class="card ltforecast card-block d-flex" style="height: 120px">
@@ -57,7 +71,7 @@
                         🌤 24°
                     </div>
                   </div>
-                  <div class="daycount">Day 2</div>
+                  <div class="daycount" id = "day2">Day 2</div>
             </div>
             <div class="col text-center my-auto">
               <div class="card ltforecast card-block d-flex" style="height: 120px">
@@ -65,7 +79,7 @@
                         🌧 21°
                 </div>
                   </div>
-                  <div class="daycount">Day 3</div>
+                  <div class="daycount" id = "day3">Day 3</div>
             </div>
             <div class="col text-center my-auto">
               <div class="card ltforecast card-block d-flex" style="height: 120px">
@@ -73,7 +87,7 @@
                         🌤 28°
                     </div>
                   </div>
-                  <div class="daycount">Day 4</div>
+                  <div class="daycount" id= "day4">Day 4</div>
               </div>
               <div class="col text-center my-auto">
                 <div class="card ltforecast card-block d-flex" style="height: 120px">
@@ -81,21 +95,22 @@
                           ☀ 28°
                       </div>
                     </div>
-                    <div class="daycount">Day 5</div>
+                    <div class="daycount" id = "day5">Day 5</div>
               </div>
           </div>
         </div>
         <br />
         <hr />
-     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>   
-    <script src="weatherApp-script.js"></script>
+     
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>   
+    <script src="src/index.js"></script>
   </body>
   <footer>
     <div>
     ⚡📡 Weather by SheCodes📡⚡
     </div>
     <a href="https://github.com/ebaumken/SheCodes-Plus">
-    Github Repository
+    Open Source Code
     </a>
     <br />
   </footer>
