@@ -35,7 +35,7 @@ input.search {
   border-color: rgb(0, 82, 78);
   border-radius: 15px;
   background-color: rgb(203, 235, 230);
-  font-size: 60px;
+  font-size: 70px;
   box-shadow: 10px 5px 5px;
 }
 .col-3 {
@@ -43,6 +43,7 @@ input.search {
 }
 .col-4 {
   padding: 0;
+  text-align: right;
 }
 .col-5 {
   padding: 0;
@@ -51,17 +52,20 @@ input.search {
   font-size: 16px;
 }
 .ltforecast {
-  border-radius: 100%;
+  border-radius: 15px;
   border-color: rgb(0, 82, 78);
-  font-size: 24px;
+  font-size: 28px;
   max-width: 350px;
   text-align: center;
   overflow: hidden;
   margin: 50px auto 20px;
-  width: 120px;
-  height: 70px;
+
+  height: 350px;
   background-color: rgb(203, 235, 230);
   box-shadow: 10px 5px 5px;
+}
+.card-body {
+  padding: 0;
 }
 .daycount {
   font-size: 16px;
@@ -82,4 +86,7 @@ footer {
   font-family: "Times New Roman", Times, serif;
   font-size: 10px;
   text-align: center;
+}
+#forecast-icon {
+  max-width: 15px;
 }
