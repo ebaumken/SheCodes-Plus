@@ -22,27 +22,12 @@ let hour = now.getHours();
 let minute = now.getMinutes();
 h2.innerHTML = `${day}, ${month} ${date}, ${hour}:${minute}`;
 
-// update 5-day forecast
-
-for (var i = 1; i < 6; i++) {
-  let counter = now.getDay() + i;
-
-  // in case the counter passes 6, it means that is out of bounds, so need to remove 7 days in order to map correctly.
-  if (counter > 6) {
-    counter -= 7;
-  }
-
-  let day = document.querySelector(`#day${i}`);
-
-  day.innerHTML = weekdays[counter];
-}
 //add API data
-function displayWindSpeedData(response) {
-  console.log(response.data);
+function displayWindSpeed(response) {
   let windSpeed = document.querySelector("#wind-speed");
   windSpeed.innerHTML = response.data.wind.speed;
 }
-function displayHumidityData(response) {
+function displayHumidity(response) {
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = response.data.main.humidity;
 }
@@ -50,7 +35,7 @@ function displayWeatherDescription(response) {
   let weatherDescription = document.querySelector("#weather-descriptor");
   weatherDescription.innerHTML = response.data.weather[0].description;
 }
-function displayTemperatureData(response) {
+function displayTemperature(response) {
   let currentTemperature = document.querySelector("#current-temperature");
   currentTemperature.innerHTML = Math.round(response.data.main.temp);
 }
@@ -62,61 +47,65 @@ function displayWeatherIcon(response) {
     `http://openweathermap.org/img/wn/${iconID}@2x.png`
   );
 }
+function displayForecast(response) {
+  for (var i = 1; i < 6; i++) {
+    let counter = now.getDay() + i;
+
+    if (counter > 6) {
+      counter -= 7;
+    }
+
+    let day = document.querySelector(`#day${i}`);
+    day.innerHTML = weekdays[counter];
+  }
+
+  for (var n = 0; n < 6; n++) {
+    console.log(response.data.daily[n]);
+    let forecast = document.querySelector(`#forecast${n + 1}`);
+    let forecastTemp = Math.round(response.data.daily[n].temp.day);
+    forecast.innerHTML = `${forecastTemp}` + `°C`;
+  }
+}
+function getForecastData(response) {
+  let lat = response.data.coord.lat;
+  let lon = response.data.coord.lon;
+
+  let apiKey = "384f3fcc4eae2c9d9d7b5addae0cb3cb";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 let apiKey = "384f3fcc4eae2c9d9d7b5addae0cb3cb";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=toronto&units=metric&appid=${apiKey}`;
 axios.get(apiUrl).then(displayWeatherDescription);
-axios.get(apiUrl).then(displayWindSpeedData);
-axios.get(apiUrl).then(displayHumidityData);
-axios.get(apiUrl).then(displayTemperatureData);
+axios.get(apiUrl).then(displayWindSpeed);
+axios.get(apiUrl).then(displayHumidity);
+axios.get(apiUrl).then(displayTemperature);
 axios.get(apiUrl).then(displayWeatherIcon);
+axios.get(apiUrl).then(getForecastData);
 
 // add search engine
 let citySearch = document.querySelector("#search-form");
 
-function updateTemperatureData(response) {
-  let newTemp = document.querySelector("#current-temperature");
-  newTemp.innerHTML = Math.round(response.data.main.temp);
-}
-function updateWindSpeed(response) {
-  console.log(response.data);
-  let windSpeed = document.querySelector("#wind-speed");
-  windSpeed.innerHTML = response.data.wind.speed;
-}
-function updateHumidity(response) {
-  let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = response.data.main.humidity;
-}
-function updateWeatherDescription(response) {
-  let weatherDescription = document.querySelector("#weather-descriptor");
-  weatherDescription.innerHTML = response.data.weather[0].description;
-}
-function updateWeatherIcon(response) {
-  let weatherIcon = document.querySelector("#weather-icon");
-  let iconID = response.data.weather[0].icon;
-  weatherIcon.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${iconID}@2x.png`
-  );
-}
 function updateCity(event) {
   event.preventDefault();
   let newCity = document.querySelector("#city-search-input");
-  let h1 = document.querySelector("h1");
+  let h1 = document.querySelector("#current-city");
   h1.innerHTML = `${newCity.value}`;
 
   let apiKey = "384f3fcc4eae2c9d9d7b5addae0cb3cb";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${newCity.value}&units=metric&appid=${apiKey}`;
-  axios.get(apiUrl).then(updateTemperatureData);
-  axios.get(apiUrl).then(updateWeatherDescription);
-  axios.get(apiUrl).then(updateWindSpeed);
-  axios.get(apiUrl).then(updateHumidity);
-  axios.get(apiUrl).then(updateWeatherIcon);
+  axios.get(apiUrl).then(displayTemperature);
+  axios.get(apiUrl).then(displayWeatherDescription);
+  axios.get(apiUrl).then(displayWindSpeed);
+  axios.get(apiUrl).then(displayHumidity);
+  axios.get(apiUrl).then(displayWeatherIcon);
+  axios.get(apiUrl).then(getForecastData);
 }
 
 citySearch.addEventListener("submit", updateCity);
 
 //add temp conversion
-
 let farenheit = document.querySelector("#farenheit-conversion-link");
 let celsius = document.querySelector("#celcius-conversion-link");
 
@@ -133,18 +122,21 @@ function getCelcius(response) {
   metric.innerHTML = "°C";
 }
 function displayFarenheit() {
-  let currentCity = "toronto";
+  let currentCity = document.querySelector("#current-city");
+  cityName = `${currentCity.innerHTML.toLowerCase()}`;
   let apiKey = "384f3fcc4eae2c9d9d7b5addae0cb3cb";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&units=imperial&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=${apiKey}`;
 
   axios.get(apiUrl).then(getFarenheit);
 }
 
 function displayCelcius(event) {
   event.preventDefault();
-  let currentCity = "toronto";
+  let currentCity = document.querySelector("#current-city");
+  cityName = `${currentCity.innerHTML.toLowerCase()}`;
+
   let apiKey = "384f3fcc4eae2c9d9d7b5addae0cb3cb";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&units=metric&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
   axios.get(apiUrl).then(getCelcius);
 }
 farenheit.addEventListener("click", displayFarenheit);
