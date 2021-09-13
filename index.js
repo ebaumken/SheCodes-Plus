@@ -58,12 +58,20 @@ function displayForecast(response) {
     let day = document.querySelector(`#day${i}`);
     day.innerHTML = weekdays[counter];
   }
-
-  for (var n = 0; n < 6; n++) {
+  for (var n = 0; n < 5; n++) {
     console.log(response.data.daily[n]);
     let forecast = document.querySelector(`#forecast${n + 1}`);
+    console.log(forecast);
     let forecastTemp = Math.round(response.data.daily[n].temp.day);
     forecast.innerHTML = `${forecastTemp}` + `°C`;
+
+    let forecastIconID = response.data.daily[n].weather[0].icon;
+    document
+      .querySelector(`#forecast-icon${n + 1}`)
+      .setAttribute(
+        "src",
+        `http://openweathermap.org/img/wn/${forecastIconID}@2x.png`
+      );
   }
 }
 function getForecastData(response) {
